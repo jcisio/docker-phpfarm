@@ -36,7 +36,7 @@ do
 
     echo "--- compiling xdebug $XDBGVERSION for php $VERSION ---------------------"
 
-    wget https://github.com/xdebug/xdebug/archive/$XDBGVERSION.tar.gz && \
+    wget -nv https://github.com/xdebug/xdebug/archive/$XDBGVERSION.tar.gz && \
     tar -xzvf $XDBGVERSION.tar.gz && \
     cd xdebug-$XDBGVERSION && \
     phpize-$V && \

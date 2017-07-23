@@ -8,7 +8,7 @@ FROM philcryer/min-jessie:latest
 LABEL maintainer = "Nguyen Hai Nam <hainam@jcisio.com>"
 
 # the PHP versions to compile
-ENV PHP_FARM_VERSIONS "5.3.29 5.4.44 5.5.38 5.6.30 7.0.17 7.1.3"
+ENV PHP_FARM_VERSIONS "5.3.29 5.4.45 5.5.38 5.6.31 7.0.21 7.1.7"
 
 # make php 5.3 work again
 ENV LDFLAGS "-lssl -lcrypto -lstdc++"
@@ -53,7 +53,7 @@ RUN apt-get update && \
     wget
 
 # install the phpfarm script
-RUN git clone https://github.com/fpoirotte/phpfarm.git phpfarm
+RUN git clone https://github.com/jcisio/phpfarm.git -b patch-1 phpfarm
 
 # add customized configuration
 COPY phpfarm /phpfarm/src/
@@ -65,9 +65,9 @@ ENV PATH /phpfarm/inst/bin/:/usr/sbin:/usr/bin:/sbin:/bin
 RUN cd /phpfarm/src && ./docker.sh
 
 RUN apt-get update && apt-get install sudo
-ENV PATH /phpfarm/inst/bin/:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/home/www-data/.composer/vendor/bin:${PATH}"
+ENV PATH /phpfarm/inst/bin/:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/home/www-data/.composer/vendor/bin:${PATH}
 RUN ln -s /phpfarm/inst/bin/php-7.1 /usr/local/bin/php
-RUN wget -qO- https://getcomposer.org/installer | php-7.1 -- --install-dir=/usr/local/bin --filename=composer && \
+RUN wget -nv -qO- https://getcomposer.org/installer | php-7.1 -- --install-dir=/usr/local/bin --filename=composer && \
 chmod +x /usr/local/bin/composer
 RUN mkdir /home/www-data && \
 chown www-data.www-data -R /home/www-data && \
@@ -76,7 +76,7 @@ ls -l /home && \
 sudo -u www-data composer global require drush/drush
 
 # sendmail for Mailhog
-wget https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -O /usr/sbin/mhsendmail
+RUN wget -nv https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -O /usr/sbin/mhsendmail
 
 # reconfigure Apache
 RUN rm -rf /var/www/*
