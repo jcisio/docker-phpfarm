@@ -45,6 +45,11 @@ do
     cp -v modules/xdebug.so /phpfarm/inst/php-$V/lib/ && \
     echo "zend_extension_debug = /phpfarm/inst/php-$V/lib/xdebug.so" >> /phpfarm/inst/php-$V/etc/php.ini && \
     echo "zend_extension = /phpfarm/inst/php-$V/lib/xdebug.so" >> /phpfarm/inst/php-$V/etc/php.ini && \
+    echo "[xdebug]" >> /phpfarm/inst/php-$V/etc/php.ini && \
+    echo "xdebug.remote_enable=1" >> /phpfarm/inst/php-$V/etc/php.ini && \
+    echo "xdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> /phpfarm/inst/php-$V/etc/php.ini && \
+    echo "xdebug.max_nesting_level=500" >> /phpfarm/inst/php-$V/etc/php.ini && \
+    echo "xdebug.idekey = PHPSTORM" >> /phpfarm/inst/php-$V/etc/php.ini && \
     cd .. && \
     rm -rf xdebug-$XDBGVERSION && \
     rm -f $XDBGVERSION.tar.gz
