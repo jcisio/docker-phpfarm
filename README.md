@@ -36,6 +36,12 @@ All PHP versions are compiled with the config-file-scan-dir pointing to
 ``/var/www/`` you can easily place custom ``.ini`` files there and they should
 be automatically be picked up by PHP.
 
+Loading startup script
+----------------------
+
+If a script ``/var/www/conf/docker/run.sh`` exists, it will be executed when
+the container starts.
+
 Supported PHP extensions
 ------------------------
 
