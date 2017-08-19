@@ -14,7 +14,7 @@ Building the image
 
 After checkout, simply run the following command:
 
-    docker build -t jcisio/phpfarm:v5 -f Dockerfile .
+    docker build -t jcisio/phpfarm:latest -f Dockerfile .
 
 This will setup a Debian base system, install phpfarm, download and compile the
 different PHP versions, extensions and setup Apache. So, yes this will take a 
@@ -26,15 +26,15 @@ Downloading the image
 Simply downloading the ready made image from Docker Hub is probably the fastest
 way. Just run one of these:
 
-    docker pull jcisio/docker:v5
+    docker pull jcisio/docker:latest
 
 Loading custom php.ini settings
 -------------------------------
 
 All PHP versions are compiled with the config-file-scan-dir pointing to
-``/var/www/.php/``. When mounting your own project as a volume to
-``/var/www/`` you can easily place custom ``.ini`` files in your project's ``.php``
-directory and they should be automatically be picked up by PHP.
+``/var/www/conf/php/``. When mounting your own project as a volume to
+``/var/www/`` you can easily place custom ``.ini`` files there and they should
+be automatically be picked up by PHP.
 
 Supported PHP extensions
 ------------------------
