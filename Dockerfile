@@ -84,6 +84,12 @@ COPY apache2 /etc/apache2/
 
 RUN a2enmod ssl
 
+RUN mkdir /etc/docker-phpfarm
+COPY bash /etc/docker-phpfarm/bash
+COPY git /etc/docker-phpfarm/git
+RUN echo "source /etc/docker-phpfarm/bash/bash.bashrc" > /root/.bashrc
+RUN ln -s /etc/docker-phpfarm/git/.gitconfig /root/.gitconfig
+
 # expose the ports
 EXPOSE 80 443
 

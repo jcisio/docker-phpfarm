@@ -14,7 +14,7 @@ Building the image
 
 After checkout, simply run the following command:
 
-    docker build -t jcisio/phpfarm:latest -f Dockerfile .
+    docker build -t jcisio/phpfarm:latest .
 
 This will setup a Debian base system, install phpfarm, download and compile the
 different PHP versions, extensions and setup Apache. So, yes this will take a 

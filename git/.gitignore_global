@@ -1,0 +1,8 @@
+# PhpStorm per project settings file
+.idea/
+# Compass watch
+cwatch.pid
+.sass-cache
+.gems
+.bundle
+node_modules
