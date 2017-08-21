@@ -92,6 +92,7 @@ RUN ln -s /etc/docker-phpfarm/git/.gitconfig /root/.gitconfig
 
 # expose the ports
 EXPOSE 80 443
+ENV TERM xterm-256color
 
 # run it
 WORKDIR /var/www
